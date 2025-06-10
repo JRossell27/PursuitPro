@@ -48,18 +48,18 @@ export default function Dashboard() {
 
   // Fetch applications when user is authenticated
   useEffect(() => {
-    if (session?.user) {
+    if (session?.user?.id) {
       fetchApplications();
     }
   }, [session]);
 
   const fetchApplications = async () => {
     try {
-      // const response = await fetch('/api/applications');
-      // if (response.ok) {
-        // const data = await response.json();
-        // setApplications(data);
-      // }
+      const response = await fetch('/api/applications');
+      if (response.ok) {
+        const data = await response.json();
+        setApplications(data);
+      }
     } catch (error) {
       console.error('Error fetching applications:', error);
     } finally {
@@ -90,15 +90,15 @@ export default function Dashboard() {
   const scrapeJobData = async (url: string) => {
     setIsScrapingUrl(true);
     try {
-      // const response = await fetch('/api/applications');
+      const response = await fetch('/api/scrape-job', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        // },
+        },
         body: JSON.stringify({ url }),
-      // });
+      });
 
-      // if (response.ok) {
+      if (response.ok) {
         const jobData = await response.json();
         setNewApplication(prev => ({
           ...prev,
@@ -107,10 +107,10 @@ export default function Dashboard() {
           description: jobData.description || prev.description,
           location: jobData.location || prev.location,
           salary: jobData.salary || prev.salary,
-        // }));
-      // } else {
+        }));
+      } else {
         alert('Failed to scrape job data. Please fill in manually.');
-      // }
+      }
     } catch (error) {
       console.error('Error scraping job data:', error);
       alert('Failed to scrape job data. Please fill in manually.');
@@ -129,15 +129,15 @@ export default function Dashboard() {
     e.preventDefault();
     if (newApplication.company && newApplication.position) {
       try {
-        // const response = await fetch('/api/applications');
+        const response = await fetch('/api/applications', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-          // },
+          },
           body: JSON.stringify(newApplication),
-        // });
+        });
 
-        // if (response.ok) {
+        if (response.ok) {
           const newApp = await response.json();
           setApplications([newApp, ...applications]);
           setNewApplication({
@@ -149,15 +149,15 @@ export default function Dashboard() {
             jobUrl: "",
             description: "",
             location: ""
-          // });
+          });
           setShowAddForm(false);
-        // } else {
+        } else {
           alert('Failed to add application. Please try again.');
-        // }
-      // } catch (error) {
+        }
+      } catch (error) {
         console.error('Error adding application:', error);
         alert('Failed to add application. Please try again.');
-      // }
+      }
     }
   };
 
