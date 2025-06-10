@@ -321,7 +321,7 @@ export default function Dashboard() {
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Job URL <span className="text-xs text-gray-500">(paste and we'll auto-fill the details)</span>
+                    Job URL <span className="text-xs text-gray-500">(paste and we&apos;ll auto-fill the details)</span>
                   </label>
                   <input
                     type="url"
