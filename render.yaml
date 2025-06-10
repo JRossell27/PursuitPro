@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: pursuitpro
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXTAUTH_URL
+        sync: false
+      - key: NEXTAUTH_SECRET
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+databases:
+  - name: pursuitpro-db
+    plan: free 

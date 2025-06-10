@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PursuitPro - Job Application Tracker
 
-## Getting Started
+A comprehensive job application tracking system with URL scraping capabilities and secure user authentication.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- 🔐 **Secure Authentication**: Email/password login with encrypted passwords
+- 🌐 **Smart Job Scraping**: Auto-extract job details from LinkedIn, Indeed, Glassdoor, and other sites
+- 📊 **Progress Analytics**: Track your application status and success metrics
+- 🔒 **Private Data**: Each user has completely separate, secure data
+- 📱 **Responsive Design**: Works great on desktop and mobile
+
+## Local Development
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Set up environment variables (see below)
+4. Run database migrations: `npx prisma migrate dev`
+5. Start development server: `npm run dev`
+
+## Environment Variables
+
+Create a `.env` file with:
+
+```env
+# Database
+DATABASE_URL="your-database-url-here"
+
+# NextAuth
+NEXTAUTH_URL="https://your-app-name.onrender.com"
+NEXTAUTH_SECRET="your-secret-key-here"
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploy to Render
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Quick Deploy (Recommended)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Fork this repository to your GitHub account
+2. Go to [Render.com](https://render.com) and sign up/sign in
+3. Click "New +" → "Web Service"
+4. Connect your GitHub account and select this repository
+5. Render will automatically detect the `render.yaml` file
+6. Set these environment variables in Render:
+   - `NEXTAUTH_URL`: `https://your-app-name.onrender.com`
+   - `NEXTAUTH_SECRET`: Generate a random string (32+ characters)
+   - `DATABASE_URL`: Will be automatically provided by Render PostgreSQL
+7. Click "Deploy"
 
-## Learn More
+### Manual Setup
 
-To learn more about Next.js, take a look at the following resources:
+If you prefer manual setup:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Create a new Web Service on Render
+2. Set build command: `npm install && npm run build`
+3. Set start command: `npm start`
+4. Add environment variables (see above)
+5. Create a PostgreSQL database and link it
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## How to Use
 
-## Deploy on Vercel
+1. Visit your deployed app
+2. Click "Get Started" to create an account
+3. Sign up with email and password
+4. Start adding job applications:
+   - Paste job URLs for auto-scraping
+   - Or manually enter job details
+   - Track status changes and progress
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Frontend**: Next.js 15, React, TailwindCSS
+- **Backend**: Next.js API Routes
+- **Database**: PostgreSQL with Prisma ORM
+- **Authentication**: NextAuth.js with credentials
+- **Deployment**: Render
+
+## Security
+
+- Passwords are hashed using bcrypt
+- Each user's data is completely isolated
+- Secure session management with NextAuth.js
+- Environment variables for sensitive data
