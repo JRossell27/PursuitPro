@@ -48,7 +48,7 @@ export default function Dashboard() {
 
   // Fetch applications when user is authenticated
   useEffect(() => {
-    if (session?.user?.id) {
+    if (session?.user) {
       fetchApplications();
     }
   }, [session]);
