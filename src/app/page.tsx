@@ -83,7 +83,7 @@ export default function Home() {
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Smart Job Scraping</h3>
             <p className="text-gray-600">
-              Paste any job URL from LinkedIn, Indeed, or other sites and we'll automatically extract company, position, location, and salary details.
+              Paste any job URL from LinkedIn, Indeed, or other sites and we&apos;ll automatically extract company, position, location, and salary details.
             </p>
           </div>
 
