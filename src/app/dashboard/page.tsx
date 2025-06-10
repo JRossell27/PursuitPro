@@ -3,11 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 
+type ApplicationStatus = "Applied" | "Interview" | "Offer" | "Rejected";
+
 interface JobApplication {
   id: number;
   company: string;
   position: string;
-  status: "Applied" | "Interview" | "Offer" | "Rejected";
+  status: ApplicationStatus;
   appliedDate: string;
   salary?: string;
 }
@@ -44,7 +46,7 @@ export default function Dashboard() {
   const [newApplication, setNewApplication] = useState({
     company: "",
     position: "",
-    status: "Applied" as const,
+    status: "Applied" as ApplicationStatus,
     appliedDate: "",
     salary: ""
   });
@@ -219,7 +221,7 @@ export default function Dashboard() {
                   </label>
                   <select
                     value={newApplication.status}
-                    onChange={(e) => setNewApplication({...newApplication, status: e.target.value as any})}
+                    onChange={(e) => setNewApplication({...newApplication, status: e.target.value as ApplicationStatus})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
                     <option value="Applied">Applied</option>
