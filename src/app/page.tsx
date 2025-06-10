@@ -131,7 +131,7 @@ export default function Home() {
               href="/auth/signin"
               className="inline-block bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors shadow-lg"
             >
-              Sign Up Now - It's Free
+              Sign Up Now - It&apos;s Free
             </Link>
           )}
         </div>
